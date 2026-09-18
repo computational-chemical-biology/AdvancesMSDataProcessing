@@ -1,0 +1,73 @@
+# Jupyter / notebooks
+.ipynb_checkpoints/
+*/.ipynb_checkpoints/*
+**/.ipynb_checkpoints/*
+!*/.ipynb_checkpoints/.gitkeep
+
+# Jupyter Book build
+_build/
+book/_build/
+docs/_build/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+build/
+dist/
+wheels/
+*.whl
+
+# Environments
+.env
+.venv/
+env/
+venv/
+ENV/
+
+# Conda
+conda-meta/
+
+# Data files (large, downloaded during the course)
+data/
+*.hdf5
+*.mzML
+*.mzXML
+*.raw
+*.mgf
+*.fasta
+*.faa
+*.fastq
+
+# Office drafts / binaries delivered with the repo
+*.odp
+*.docx
+*.pdf
+*.zip
+*.png
+*.jpg
+*.jpeg
+
+# IDE / OS
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+*~
+.~lock.*
+
+# Lock files
+.~lock.*
+
+# Logs
+*.log
+
+# Docker
+docker/data/
+
+# Misc
+*.tmp
+*.bak

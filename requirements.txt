@@ -1,0 +1,71 @@
+# Advanced Mass Spectrometry Data Processing - Python requirements
+# ---------------------------------------------------------------
+# Full dependency set used to run the course notebooks in a local JupyterLab.
+# Install with:  pip install -r requirements.txt
+#
+# Heavy ML framework (chemprop, alphapept, DreaMS). For a CPU-only / lite
+# environment, install torch-cpu first (see Dockerfile):
+#   pip install torch --index-url https://download.pytorch.org/whl/cpu
+#
+# Some notebooks need packages that are NOT on PyPI. Install them separately:
+#   pyvenn   -> git clone https://github.com/italodovalle/pyvenn && pip install ./pyvenn
+#   DreaMS   -> git clone https://github.com/pluskal-lab/DreaMS && pip install -e DreaMS
+#   qcmxp    -> python port of QC:MXP (see StatisticalValidationModelRobustness/QC-MXP_demo.ipynb)
+
+# --- Core scientific stack -----------------------------------------------
+numpy
+pandas
+scipy
+matplotlib
+seaborn
+plotly
+scikit-learn
+statsmodels
+ipython
+ipykernel
+ipywidgets
+ipympl
+jupyterlab
+notebook
+
+# --- Statistics / chemometrics / ML --------------------------------------
+scikit-posthocs
+statannotations
+pingouin
+yellowbrick
+umap-learn
+PyComplexHeatmap
+session-info
+scikit-bio
+omicverse
+
+# --- Mass spectrometry data processing -----------------------------------
+pyopenms
+pyopenms-viz
+matchms
+matchmsextras
+networkx
+peakutils
+
+# --- Cheminformatics / molecular docking / QSAR --------------------------
+rdkit
+dockstring
+chemprop
+
+# --- Emerging platforms / pipelines --------------------------------------
+fermo-core
+alphapept
+tooluniverse
+google-adk
+
+# --- Utilities -----------------------------------------------------------
+coloredlogs
+molplotly
+dash
+huggingface_hub
+h5py
+openpyxl
+requests
+tqdm
+session-info
+pillow

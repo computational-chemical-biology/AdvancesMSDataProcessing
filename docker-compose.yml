@@ -1,0 +1,22 @@
+services:
+  jupyter:
+    build: .
+    image: ams-data-processing:latest
+    container_name: ams-data-processing
+    ports:
+      - "8888:8888"
+    volumes:
+      - .:/work
+    environment:
+      - JUPYTER_ENABLE_LAB=yes
+      - PYTHONPATH=/work
+    command:
+      - jupyter
+      - lab
+      - --ip=0.0.0.0
+      - --port=8888
+      - --no-browser
+      - --allow-root
+      - --ServerApp.token=
+      - --ServerApp.root_dir=/work
+    restart: unless-stopped

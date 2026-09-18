@@ -1,0 +1,68 @@
+# Table of contents
+# Learn more at https://jupyterbook.org/customize/toc.html
+
+format: jb-book
+root: 0-Index
+parts:
+- caption: Introduction
+  chapters:
+  - file: tutorial_resumido_python
+
+- caption: Spectral Data Preprocessing and Treatment
+  chapters:
+  - file: SpectralDataPreprocessingTreatment/Bacteria_Proc_Methods
+  - file: SpectralDataPreprocessingTreatment/pyopenms_api
+  - file: SpectralDataPreprocessingTreatment/matchms_spectral_library
+  - file: SpectralDataPreprocessingTreatment/matchms_networking
+  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task0_Prerequisites
+  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task1_Peaks
+  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task2_ID
+  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task3_Quant
+  - file: SpectralDataPreprocessingTreatment/python_in_proteomics_peerj_27736v1
+
+- caption: Multivariate Exploratory Analysis and Supervised Models for Classification and Prediction
+  chapters:
+  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_01_intro
+  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_02_multivariate
+  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python
+
+- caption: Data Integration in Mass Spectrometry
+  chapters:
+  - file: DataIntegrationMassSpectrometry/MatrixQCvisUtils
+  - file: DataIntegrationMassSpectrometry/06-Nintegration
+
+- caption: Statistical Validation and Model Robustness
+  chapters:
+  - file: StatisticalValidationModelRobustness/Metanorm_figures
+  - file: StatisticalValidationModelRobustness/QC-MXP_demo
+
+- caption: Chemometric Interpretation and Biochemical Relevance
+  chapters:
+  - file: ChemometricInterpretationBiochemicalRelevance/Omics_Python_code
+
+- caption: Cheminformatics Applied to Mass Spectrometry and Structural Analysis
+  chapters:
+  - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/iceberg_demo_pubchem_elucidation
+  - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/1_docking_risperidone_against_DRD2
+
+- caption: Mining and Prediction of Molecular and Structural Data
+  chapters:
+  - file: MiningPredictionMolecularStructuralData/cheminformatics_predicting_solubility
+  - file: MiningPredictionMolecularStructuralData/descriptors
+  - file: MiningPredictionMolecularStructuralData/venn
+
+- caption: Predictive Modeling of Bioactivity and Chemical Properties
+  chapters:
+  - file: PredictiveModelingBioactivityChemicalProperties/FERMO_core_case_study
+  - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023
+  - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023_exercises
+
+- caption: Supervised and Unsupervised Machine Learning
+  chapters:
+  - file: SupervisedUnsupervisedMachineLearning/dreams_beer_profiler_workshop
+
+- caption: Emerging Computational Platforms and Pipelines
+  chapters:
+  - file: EmergingComputationalPlatformsPipelines/AlphaPept
+  - file: EmergingComputationalPlatformsPipelines/Modeling_Protein_Ligand_Interactions
+  - file: EmergingComputationalPlatformsPipelines/ToolUniverse_CaseStudy

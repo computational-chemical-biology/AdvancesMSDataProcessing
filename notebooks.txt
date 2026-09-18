@@ -1,0 +1,54 @@
+- Introduction
+tutorial_resumido_python.ipynb
+
+- SpectralDataPreprocessingTreatment
+Bacteria_Proc_Methods.py
+
+pyopenms-api.ipynb
+matchms-spectral-library.ipynb
+matchms_networking.ipynb
+
+PyOpenMS_Task0_Prerequisites.ipynb
+PyOpenMS_Task1_Peaks.ipynb
+PyOpenMS_Task2_ID.ipynb
+PyOpenMS_Task3_Quant.ipynb
+
+python_in_proteomics_peerj_27736v1.ipynb
+
+- MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction
+Stats_Untargeted_Metabolomics_python.ipynb
+t_metabol_01_intro.ipynb
+t_metabol_02_multivariate.ipynb
+
+- DataIntegrationMassSpectrometry
+MatrixQCvisUtils.ipynb
+06-Nintegration.ipynb
+
+- StatisticalValidationModelRobustness
+Metanorm_figures.ipynb
+QC-MXP_demo.ipynb
+
+- ChemometricInterpretationBiochemicalRelevance
+Omics_Python_code.ipynb
+
+- Cheminformatics AppliedMassSpectrometryStructuralAnalysis 
+iceberg_demo_pubchem_elucidation.ipynb
+1_docking_risperidone_against_DRD2.ipynb - extra
+
+- MiningPredictionMolecularStructuralData
+cheminformatics_predicting_solubility.ipynb
+descriptors.ipynb
+venn.ipynb
+
+- PredictiveModelingBioactivityChemicalProperties
+FERMO_core_case_study.ipynb
+chemprop_colab_demo_acs_fall2023.ipynb
+chemprop_colab_demo_acs_fall2023_exercises.ipynb
+
+- SupervisedUnsupervisedMachineLearning 
+dreams_beer_profiler_workshop.ipynb
+
+- EmergingComputationalPlatformsPipelines
+AlphaPept.ipynb
+Modeling_Protein_Ligand_Interactions.ipynb
+
