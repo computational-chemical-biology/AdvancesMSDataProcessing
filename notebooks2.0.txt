@@ -1,3 +1,4 @@
+
 # Advances in MS Data Processing
 # Instructor: Ricardo R. Alves da Silva — University of São Paulo (USP), Ribeirão Preto, Brazil
 #
@@ -7,10 +8,11 @@
 - Introduction
 PyOpenMS_Task0_Prerequisites.ipynb - https://github.com/timosachsenberg/PyOpenMSCourse
 
+
 - SpectralDataPreprocessingTreatment
 Metabolomics trail
 Bacteria_Proc_Methods.py - https://github.com/chrisp33/Python-For-RnD
-pyopenms-api.ipynb - https://github.com/computational-chemical-biology/SSIM
+pyopenms-api.ipynb -https://github.com/computational-chemical-biology/SSIM
 
 Proteomics trail
 PyOpenMS_Task1_Peaks.ipynb - https://github.com/timosachsenberg/PyOpenMSCourse
@@ -19,7 +21,7 @@ python_in_proteomics_peerj_27736v1.ipynb - https://books.rsc.org/books/edited-vo
 - StatisticalValidationModelRobustness
 QC-MXP_demo.ipynb - https://broadhurstdavid.github.io/QC-MXP/
 
-- Cheminformatics AppliedMassSpectrometryStructuralAnalysis
+- Cheminformatics AppliedMassSpectrometryStructuralAnalysis 
 iceberg_demo_pubchem_elucidation.ipynb - https://github.com/coleygroup/ms-pred
 PyOpenMS_Task2_ID.ipynb - https://github.com/timosachsenberg/PyOpenMSCourse
 

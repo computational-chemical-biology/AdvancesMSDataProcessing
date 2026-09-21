@@ -6,63 +6,45 @@ root: 0-Index
 parts:
 - caption: Introduction
   chapters:
-  - file: tutorial_resumido_python
+  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task0_Prerequisites
 
-- caption: Spectral Data Preprocessing and Treatment
+- caption: SpectralDataPreprocessingTreatment
   chapters:
   - file: SpectralDataPreprocessingTreatment/Bacteria_Proc_Methods
-  - file: SpectralDataPreprocessingTreatment/pyopenms_api
-  - file: SpectralDataPreprocessingTreatment/matchms_spectral_library
-  - file: SpectralDataPreprocessingTreatment/matchms_networking
-  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task0_Prerequisites
+    sections:
+    - file: SpectralDataPreprocessingTreatment/pyopenms_api
   - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task1_Peaks
-  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task2_ID
-  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task3_Quant
-  - file: SpectralDataPreprocessingTreatment/python_in_proteomics_peerj_27736v1
+    sections:
+    - file: SpectralDataPreprocessingTreatment/python_in_proteomics_peerj_27736v1
 
-- caption: Multivariate Exploratory Analysis and Supervised Models for Classification and Prediction
+- caption: StatisticalValidationModelRobustness
   chapters:
-  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_01_intro
-  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_02_multivariate
-  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python
-
-- caption: Data Integration in Mass Spectrometry
-  chapters:
-  - file: DataIntegrationMassSpectrometry/MatrixQCvisUtils
-  - file: DataIntegrationMassSpectrometry/06-Nintegration
-
-- caption: Statistical Validation and Model Robustness
-  chapters:
-  - file: StatisticalValidationModelRobustness/Metanorm_figures
   - file: StatisticalValidationModelRobustness/QC-MXP_demo
 
-- caption: Chemometric Interpretation and Biochemical Relevance
-  chapters:
-  - file: ChemometricInterpretationBiochemicalRelevance/Omics_Python_code
-
-- caption: Cheminformatics Applied to Mass Spectrometry and Structural Analysis
+- caption: Cheminformatics AppliedMassSpectrometryStructuralAnalysis
   chapters:
   - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/iceberg_demo_pubchem_elucidation
-  - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/1_docking_risperidone_against_DRD2
+  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task2_ID
 
-- caption: Mining and Prediction of Molecular and Structural Data
+- caption: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction
   chapters:
-  - file: MiningPredictionMolecularStructuralData/cheminformatics_predicting_solubility
-  - file: MiningPredictionMolecularStructuralData/descriptors
-  - file: MiningPredictionMolecularStructuralData/venn
+  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python
+  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_01_intro
+  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_02_multivariate
 
-- caption: Predictive Modeling of Bioactivity and Chemical Properties
+- caption: PredictiveModelingBioactivityChemicalProperties
   chapters:
   - file: PredictiveModelingBioactivityChemicalProperties/FERMO_core_case_study
   - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023
   - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023_exercises
 
-- caption: Supervised and Unsupervised Machine Learning
+- caption: DataIntegrationMassSpectrometry
+  chapters:
+  - file: DataIntegrationMassSpectrometry/multiomics
+
+- caption: EmergingComputationalPlatformsPipelines
   chapters:
   - file: SupervisedUnsupervisedMachineLearning/dreams_beer_profiler_workshop
-
-- caption: Emerging Computational Platforms and Pipelines
-  chapters:
   - file: EmergingComputationalPlatformsPipelines/AlphaPept
-  - file: EmergingComputationalPlatformsPipelines/Modeling_Protein_Ligand_Interactions
-  - file: EmergingComputationalPlatformsPipelines/ToolUniverse_CaseStudy
+    sections:
+    - file: EmergingComputationalPlatformsPipelines/Modeling_Protein_Ligand_Interactions
