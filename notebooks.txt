@@ -1,54 +1,55 @@
 - Introduction
-tutorial_resumido_python.ipynb
+tutorial_resumido_python.ipynb - https://github.com/computational-chemical-biology/SSIM
 
 - SpectralDataPreprocessingTreatment
-Bacteria_Proc_Methods.py
+Bacteria_Proc_Methods.py - https://github.com/chrisp33/Python-For-RnD
 
-pyopenms-api.ipynb
-matchms-spectral-library.ipynb
-matchms_networking.ipynb
+pyopenms-api.ipynb - https://github.com/axelwalter/pyopenms-workshop
+matchms-spectral-library.ipynb - https://github.com/matchms/matchms
+matchms_networking.ipynb - https://github.com/matchms/matchms
 
-PyOpenMS_Task0_Prerequisites.ipynb
-PyOpenMS_Task1_Peaks.ipynb
-PyOpenMS_Task2_ID.ipynb
-PyOpenMS_Task3_Quant.ipynb
+PyOpenMS_Task0_Prerequisites.ipynb - https://github.com/timosachsenberg/PyOpenMSCourse
+PyOpenMS_Task1_Peaks.ipynb - https://github.com/timosachsenberg/PyOpenMSCourse
+PyOpenMS_Task2_ID.ipynb - https://github.com/timosachsenberg/PyOpenMSCourse
+PyOpenMS_Task3_Quant.ipynb - https://github.com/timosachsenberg/PyOpenMSCourse
 
-python_in_proteomics_peerj_27736v1.ipynb
+python_in_proteomics_peerj_27736v1.ipynb - https://books.rsc.org/books/edited-volume/862/chapter-abstract/624111/Python-in-Proteomics?redirectedFrom=fulltext
 
 - MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction
-Stats_Untargeted_Metabolomics_python.ipynb
-t_metabol_01_intro.ipynb
-t_metabol_02_multivariate.ipynb
+Stats_Untargeted_Metabolomics_python.ipynb - Stats_Untargeted_Metabolomics_python.ipynb
+t_metabol_01_intro.ipynb - https://omicverse.readthedocs.io/en/latest/Tutorials-metabol/t_metabol_01_intro.html
+t_metabol_02_multivariate.ipynb - https://omicverse.readthedocs.io/en/latest/Tutorials-metabol/t_metabol_02_multivariate.html
 
 - DataIntegrationMassSpectrometry
-MatrixQCvisUtils.ipynb
-06-Nintegration.ipynb
+multiomics.ipynb - https://github.com/Multiomics-Analytics-Group/course_multi-omics_data_science/blob/main/multiomics/notebooks/multiomics.ipynb
+MatrixQCvisUtils.ipynb - https://github.com/tnaake/MatrixQCvis
+06-Nintegration.ipynb - https://mixomics.org/
 
 - StatisticalValidationModelRobustness
-Metanorm_figures.ipynb
-QC-MXP_demo.ipynb
+Metanorm_figures.ipynb 
+QC-MXP_demo.ipynb - https://broadhurstdavid.github.io/QC-MXP/
 
 - ChemometricInterpretationBiochemicalRelevance
 Omics_Python_code.ipynb
 
 - Cheminformatics AppliedMassSpectrometryStructuralAnalysis 
-iceberg_demo_pubchem_elucidation.ipynb
-1_docking_risperidone_against_DRD2.ipynb - extra
+iceberg_demo_pubchem_elucidation.ipynb - https://github.com/coleygroup/ms-pred
+1_docking_risperidone_against_DRD2.ipynb - extra - https://github.com/dockstring/dockstring/
 
 - MiningPredictionMolecularStructuralData
-cheminformatics_predicting_solubility.ipynb
-descriptors.ipynb
-venn.ipynb
+cheminformatics_predicting_solubility.ipynb - https://github.com/dataprofessor/code/blob/master/python/cheminformatics_predicting_solubility.ipynb
+descriptors.ipynb - https://github.com/computational-chemical-biology/npmine
+venn.ipynb - https://github.com/computational-chemical-biology/npmine
 
 - PredictiveModelingBioactivityChemicalProperties
-FERMO_core_case_study.ipynb
-chemprop_colab_demo_acs_fall2023.ipynb
+FERMO_core_case_study.ipynb - https://github.com/fermo-metabolomics
+chemprop_colab_demo_acs_fall2023.ipynb - https://github.com/chemprop/chemprop-workshop-acs-fall2023
 chemprop_colab_demo_acs_fall2023_exercises.ipynb
 
 - SupervisedUnsupervisedMachineLearning 
-dreams_beer_profiler_workshop.ipynb
+dreams_beer_profiler_workshop.ipynb - https://github.com/pluskal-lab/DreaMS
 
 - EmergingComputationalPlatformsPipelines
-AlphaPept.ipynb
-Modeling_Protein_Ligand_Interactions.ipynb
+AlphaPept.ipynb - https://github.com/MannLabs/alphapept
+Modeling_Protein_Ligand_Interactions.ipynb - https://github.com/deepchem/deepchem
 

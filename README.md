@@ -56,7 +56,7 @@ SupervisedUnsupervisedMachineLearning/    # DreaMS beer profiler
 EmergingComputationalPlatformsPipelines/  # AlphaPept, protein–ligand modelling
 ```
 
-**Book config:** `_config.yml` + `_toc.yml` (Jupyter Book).
+**Book config:** `_config.yml` + `_toc.yml` (Jupyter Book v1) and `myst.yml` (Jupyter Book v2 / MyST).
 **Environment:** `requirements.txt` (pip) and `environment.yml` (conda).
 **Containers:** `Dockerfile` + `docker-compose.yml` (lite JupyterLab image).
 
@@ -102,9 +102,28 @@ The course folder is mounted at `/work`, so notebook changes are kept on the hos
 
 ## Build the Jupyter Book (static HTML)
 
+Two engines are supported:
+
+### Jupyter Book v2 (MyST-based, recommended)
+
 ```bash
-pip install jupyter-book ghp-import
-jupyter-book build .
+pip install jupyter-book>=2
+cd AdvancesMSDataProcessing          # run FROM INSIDE the book folder
+jupyter-book build --site            # static HTML build (no directory argument!)
+# preview: open file://_build/site/index.html
+# or a live-reload server:
+jupyter-book start
+```
+
+> ℹ️ In Jupyter Book v2 the command is built from the `myst.yml` config and the
+> positional argument expects *files*, not a folder — passing the book directory
+> raises `EISDIR`.
+
+### Jupyter Book v1 (Sphinx-based)
+
+```bash
+pip install "jupyter-book<2"
+jupyter-book build .                 # or jupyter-book build AdvancesMSDataProcessing/
 # preview: open _build/html/index.html
 ```
 
