@@ -112,12 +112,18 @@ cd AdvancesMSDataProcessing          # run FROM INSIDE the book folder
 jupyter-book build --site            # static HTML build (no directory argument!)
 # preview: open file://_build/site/index.html
 # or a live-reload server:
-jupyter-book start
+jupyter-book start                   # serves http://localhost:3000 and auto-reloads on edits
 ```
 
 > ℹ️ In Jupyter Book v2 the command is built from the `myst.yml` config and the
 > positional argument expects *files*, not a folder — passing the book directory
 > raises `EISDIR`.
+>
+> ℹ️ Page URLs are **slugified without the `.html` extension**, e.g. the notebook
+> `tutorial_resumido_python.ipynb` is served at
+> `http://localhost:3000/tutorial-resumido-python` — do **not** append `.html`.
+> ("Document not found" for a `.html` URL means you are using the v1-style URL —
+> drop the extension.)
 
 ### Jupyter Book v1 (Sphinx-based)
 
@@ -132,6 +138,39 @@ Publish to GitHub Pages (optional):
 ```bash
 ghp-import -n -p -f _build/html
 ```
+
+## Updating the book after edits
+
+1. Save your notebook/config changes (no extra step — the build reads the files directly).
+2. Regenerate the site:
+   - **With the live server running** (`jupyter-book start`): it watches files and
+     rebuilds automatically — just reload the page in your browser.
+   - **Manually:** rerun the build command, then clear the browser cache or hard-refresh
+     (`Ctrl+Shift+R`) since MyST hashes assets per build:
+     ```bash
+     jupyter-book clean . -y   # optional: wipe the previous _build output
+     jupyter-book build --site # or: jupyter-book build .  (v1)
+     ```
+3. Preview at `file://.../_build/site/index.html` (v2) or `_build/html/index.html` (v1).
+4. After a fresh clone, always run `pip install -r requirements.txt` (or the conda env)
+   before building, so the R/pyOpenMS kernels and notebook deps match.
+
+## Colab badges and source links
+
+Every notebook starts with a **“Open in Colab”** badge and a **Source** link:
+
+```markdown
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](
+  https://colab.research.google.com/github/computational-chemical-biology/AdvancesMSDataProcessing/blob/master/<path-to-notebook>)
+
+> **Source:** [host](https://original-URL-from-notebooks.txt)
+```
+
+- Badges point to this repo on branch `master` (`computational-chemical-biology/AdvancesMSDataProcessing`).
+- If the repository/branch changes, update:
+  - the badge path in every notebook,
+  - `repository.url`/`branch` in `_config.yml`,
+  - `github:` in `myst.yml`.
 
 ---
 

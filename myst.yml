@@ -9,7 +9,7 @@ project:
     - name: Ricardo R. Alves da Silva
       affiliation: University of São Paulo (USP) - Ribeirão Preto
       email: rsilva@usp.br
-  github: https://github.com/rsilva/AdvancesMSDataProcessing
+  github: https://github.com/computational-chemical-biology/AdvancesMSDataProcessing
   license: CC-BY-4.0
   toc:
     - file: 0-Index.ipynb
