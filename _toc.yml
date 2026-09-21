@@ -10,7 +10,7 @@ parts:
 
 - caption: SpectralDataPreprocessingTreatment
   chapters:
-  - file: SpectralDataPreprocessingTreatment/Bacteria_Proc_Methods
+  - file: SpectralDataPreprocessingTreatment/basic_mass_spectrum_preprocessing_peak_detection
     sections:
     - file: SpectralDataPreprocessingTreatment/pyopenms_api
   - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task1_Peaks

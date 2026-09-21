@@ -9,7 +9,7 @@ PyOpenMS_Task0_Prerequisites.ipynb - https://github.com/timosachsenberg/PyOpenMS
 
 - SpectralDataPreprocessingTreatment
 Metabolomics trail
-Bacteria_Proc_Methods.py - https://github.com/chrisp33/Python-For-RnD
+basic_mass_spectrum_preprocessing_peak_detection.ipynb
 pyopenms-api.ipynb - https://github.com/computational-chemical-biology/SSIM
 
 Proteomics trail

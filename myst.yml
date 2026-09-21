@@ -16,7 +16,7 @@ project:
       children:
         - title: Metabolomics trail
           children:
-            - file: SpectralDataPreprocessingTreatment/Bacteria_Proc_Methods.ipynb
+            - file: SpectralDataPreprocessingTreatment/basic_mass_spectrum_preprocessing_peak_detection.ipynb
             - file: SpectralDataPreprocessingTreatment/pyopenms_api.ipynb
         - title: Proteomics trail
           children:
