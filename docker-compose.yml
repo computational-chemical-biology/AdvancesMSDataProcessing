@@ -1,6 +1,7 @@
 services:
+  # Single-instance JupyterLab (legacy / instructor use).
+  # For multi-user access see JUPYTERHUB.md.
   jupyter:
-    build: .
     image: ams-data-processing:latest
     container_name: ams-data-processing
     ports:
@@ -20,3 +21,41 @@ services:
       - --ServerApp.token=
       - --ServerApp.root_dir=/work
     restart: unless-stopped
+
+  # Multi-user JupyterHub: one Docker container per student.
+  # Served at https://seriema.fcfrp.usp.br through the existing nginx-proxy.
+  # See JUPYTERHUB.md for accounts, user data and capacity planning.
+  jupyterhub:
+    image: jupyterhub-hub:latest
+    container_name: jupyterhub
+    restart: unless-stopped
+    # Node 18/20 worker threads abort under this host's default seccomp profile
+    security_opt:
+      - seccomp=unconfined
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./jupyterhub/jupyterhub_config.py:/etc/jupyterhub/jupyterhub_config.py:ro
+      - jupyterhub_data:/srv/jupyterhub
+    environment:
+      # Reverse-proxy routing + Let's Encrypt (uses nginx-proxy / nginx-proxy-le)
+      - VIRTUAL_HOST=seriema.fcfrp.usp.br
+      - VIRTUAL_PORT=8000
+      - LETSENCRYPT_HOST=seriema.fcfrp.usp.br
+      # Spawn settings (read by jupyterhub_config.py)
+      - SPAWN_IMAGE_SLIM=ams-data-slim:latest
+      - SPAWN_IMAGE_FULL=ams-data-processing:latest
+      - SPAWN_MEM_LIMIT=2G
+      - SPAWN_CPU_LIMIT=1
+      - COURSE_NOTEBOOKS_DIR=/home/rsilva/AdvancesMSDataProcessing
+    networks:
+      - jupyterhub-net
+      - nginx-net
+
+volumes:
+  jupyterhub_data:
+
+networks:
+  jupyterhub-net:
+    external: true   # create once: docker network create jupyterhub-net
+  nginx-net:
+    external: true

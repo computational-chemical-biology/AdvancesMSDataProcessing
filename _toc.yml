@@ -48,3 +48,5 @@ parts:
   - file: EmergingComputationalPlatformsPipelines/AlphaPept
     sections:
     - file: EmergingComputationalPlatformsPipelines/Modeling_Protein_Ligand_Interactions
+  - file: EmergingComputationalPlatformsPipelines/ToolUniverse_CaseStudy
+  - file: EmergingComputationalPlatformsPipelines/googleADK

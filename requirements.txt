@@ -13,7 +13,8 @@
 #   qcmxp    -> python port of QC:MXP (see StatisticalValidationModelRobustness/QC-MXP_demo.ipynb)
 
 # --- Core scientific stack -----------------------------------------------
-numpy
+# keras 2.15 (required by fermo-core) does not support numpy 2.x
+numpy<2
 pandas
 scipy
 matplotlib
@@ -50,7 +51,10 @@ peakutils
 # --- Cheminformatics / molecular docking / QSAR --------------------------
 rdkit
 dockstring
-chemprop
+# Pinned: chemprop>=2.3 depends on cuik-molmaker-pin, which pins a current rdkit
+# (>=2025). fermo-core pins matchms==0.24.0, which requires rdkit<2024, so they
+# cannot coexist. 1.6.x (2023) predates cuik-molmaker-pin and is compatible.
+chemprop==1.6.1
 
 # --- Emerging platforms / pipelines --------------------------------------
 fermo-core

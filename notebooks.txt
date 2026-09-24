@@ -40,3 +40,5 @@ multiomics.ipynb - https://github.com/Multiomics-Analytics-Group/course_multi-om
 dreams_beer_profiler_workshop.ipynb - https://github.com/pluskal-lab/DreaMS
 AlphaPept.ipynb - https://github.com/MannLabs/alphapept
 Modeling_Protein_Ligand_Interactions.ipynb - https://github.com/deepchem/deepchem
+ToolUniverse_CaseStudy.ipynb - https://aiscientist.tools/
+googleADK.ipynb - https://adk.dev/

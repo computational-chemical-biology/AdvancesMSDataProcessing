@@ -84,10 +84,9 @@ jupyter lab
 
 ---
 
-## Run with Docker (lite JupyterLab image)
+## Run with Docker (JupyterLab image)
 
-A lightweight JupyterLab image ships all Python requirements plus an R kernel
-for the R-based notebooks (mixOmics/DIABLO, MatrixQCvisUtils, Metanorm):
+A JupyterLab image ships all Python requirements:
 
 ```bash
 docker build -t ams-data-processing .
@@ -97,6 +96,17 @@ docker compose up
 ```
 
 The course folder is mounted at `/work`, so notebook changes are kept on the host.
+
+> **⚠ This host (seriema):** Docker 19.03's default seccomp profile breaks
+> `dpkg` during image builds. Build with `docker run --security-opt seccomp=unconfined`
+> + `docker commit`, or use the pre-built images.
+
+## Multi-user access (JupyterHub, ~50 students)
+
+This repository also ships a **JupyterHub** deployment (`docker-compose.yml` +
+`jupyterhub/`) that gives each student their own isolated container behind a login
+page. **See [JUPYTERHUB.md](JUPYTERHUB.md)** for setup, accounts, user data,
+capacity planning and how to build the slim/hub images on a restricted host.
 
 ---
 
