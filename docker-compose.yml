@@ -46,7 +46,9 @@ services:
       - SPAWN_IMAGE_FULL=ams-data-processing:latest
       - SPAWN_MEM_LIMIT=2G
       - SPAWN_CPU_LIMIT=1
-      - COURSE_NOTEBOOKS_DIR=/home/rsilva/AdvancesMSDataProcessing
+      # Curated read-only view of the course notebooks, mirroring the Jupyter
+      # Book (_toc.yml). Users only see the indexed notebooks.
+      - COURSE_NOTEBOOKS_DIR=/home/rsilva/AdvancesMSDataProcessing/jupyterhub-notebooks
     networks:
       - jupyterhub-net
       - nginx-net
