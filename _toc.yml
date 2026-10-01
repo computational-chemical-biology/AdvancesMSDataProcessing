@@ -6,15 +6,15 @@ root: 0-Index
 parts:
 - caption: Introduction
   chapters:
-  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task0_Prerequisites
+  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Prerequisites
 
 - caption: SpectralDataPreprocessingTreatment
   chapters:
   - file: SpectralDataPreprocessingTreatment/basic_mass_spectrum_preprocessing_peak_detection
     sections:
     - file: SpectralDataPreprocessingTreatment/pyopenms_api
-  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task1_Peaks
     sections:
+    - file: SpectralDataPreprocessingTreatment/PyOpenMS_Peaks
     - file: SpectralDataPreprocessingTreatment/python_in_proteomics_peerj_27736v1
 
 - caption: StatisticalValidationModelRobustness
@@ -23,6 +23,8 @@ parts:
 
 - caption: Cheminformatics AppliedMassSpectrometryStructuralAnalysis
   chapters:
+  - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/matchms_spectral_library
+  - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/matchms_networking
   - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/iceberg_demo_pubchem_elucidation
   - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task2_ID
 
