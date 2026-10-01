@@ -24,11 +24,13 @@ project:
   - core
   toc:
   - file: 0-Index.ipynb
-  - title: Introduction
+  - file: sections/01-introduction.md
+    title: Introduction
     children:
     - file: SpectralDataPreprocessingTreatment/PyOpenMS_Prerequisites.ipynb
       title: PyOpenMS_Prerequisites
-  - title: Pre-processing
+  - file: sections/02-pre-processing.md
+    title: Pre-processing
     children:
     - file: SpectralDataPreprocessingTreatment/basic_mass_spectrum_preprocessing_peak_detection.ipynb
       title: basic_mass_spectrum_preprocessing_peak_detection
@@ -38,11 +40,13 @@ project:
       title: PyOpenMS_Task1_Peaks
     - file: SpectralDataPreprocessingTreatment/python_in_proteomics_peerj_27736v1.ipynb
       title: python_in_proteomics_peerj_27736v1
-  - title: Statistical robustness
+  - file: sections/03-statistical-robustness.md
+    title: Statistical robustness
     children:
     - file: StatisticalValidationModelRobustness/QC-MXP_demo.ipynb
       title: QC-MXP_demo
-  - title: Signal annotation
+  - file: sections/04-signal-annotation.md
+    title: Signal annotation
     children:
     - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/matchms_spectral_library.ipynb
       title: matchms_spectral_library
@@ -54,7 +58,8 @@ project:
       title: iceberg_demo_pubchem_elucidation
     - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/PyOpenMS_ID.ipynb
       title: PyOpenMS_ID
-  - title: Exploratory data analysis
+  - file: sections/05-exploratory-data-analysis.md
+    title: Exploratory data analysis
     children:
     - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python.ipynb
       title: Stats_Untargeted_Metabolomics_python
@@ -68,7 +73,8 @@ project:
       title: t_metabol_01_intro
     - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_02_multivariate.ipynb
       title: t_metabol_02_multivariate
-  - title: Compound activity prediction
+  - file: sections/06-compound-activity-prediction.md
+    title: Compound activity prediction
     children:
     - file: PredictiveModelingBioactivityChemicalProperties/FERMO_core_case_study.ipynb
       title: FERMO_core_case_study
@@ -76,11 +82,13 @@ project:
       title: chemprop_colab_demo_acs_fall2023
     - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023_exercises.ipynb
       title: chemprop_colab_demo_acs_fall2023_exercises
-  - title: Data Integration
+  - file: sections/07-data-integration.md
+    title: Data Integration
     children:
     - file: DataIntegrationMassSpectrometry/multiomics.ipynb
       title: multiomics
-  - title: Emerging applications
+  - file: sections/08-emerging-applications.md
+    title: Emerging applications
     children:
     - file: SupervisedUnsupervisedMachineLearning/dreams_beer_profiler_workshop.ipynb
       title: dreams_beer_profiler_workshop

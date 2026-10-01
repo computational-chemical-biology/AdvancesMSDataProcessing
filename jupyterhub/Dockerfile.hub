@@ -1,0 +1,7 @@
+# JupyterHub control plane image.
+# On hosts where `docker build` works you can build it from the compose file;
+# otherwise rebuild by installing the deps into a throwaway container and
+# committing it (see JUPYTERHUB.md "Building the images").
+FROM jupyterhub/jupyterhub:5.0
+
+RUN pip install --no-cache-dir dockerspawner jupyterhub-nativeauthenticator

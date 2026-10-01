@@ -68,6 +68,16 @@ Thumbs.db
 # Docker
 docker/data/
 
+# Core dumps / scratch files
+core
+core.*
+untitled.*
+Untitled*.ipynb
+
+# Generated curated JupyterHub tree
+# (rebuild with: python3 jupyterhub/sync_notebooks.py)
+jupyterhub-notebooks/
+
 # Misc
 *.tmp
 *.bak
