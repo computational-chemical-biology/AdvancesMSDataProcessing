@@ -8,8 +8,7 @@ parts:
   chapters:
   - SpectralDataPreprocessingTreatment/basic_mass_spectrum_preprocessing_peak_detection
   - SpectralDataPreprocessingTreatment/pyopenms-api
-  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Peaks
-    name: PyOpenMS_Task1_Peaks.ipynb
+  - SpectralDataPreprocessingTreatment/PyOpenMS_Peaks
   - SpectralDataPreprocessingTreatment/python_in_proteomics_peerj_27736v1
 - caption: Statistical robustness
   chapters:
