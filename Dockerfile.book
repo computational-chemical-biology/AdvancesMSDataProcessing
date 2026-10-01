@@ -1,0 +1,61 @@
+# Builds the "Advances in MS Data Processing" book (Jupyter Book v2 / MyST) into a static
+# site and serves it with nginx.
+#
+#   docker build -f Dockerfile.book -t ams-book .
+#   docker run -d --name ams-book -p 3001:80 ams-book      # http://<host>:3001
+#
+# `jupyter-book build --html` writes one directory per page (with index.html) into
+# _build/html/, so every page is reachable by its own URL, e.g.
+#   http://<host>:3001/pyopenms-prerequisites
+# (`--site` alone only emits the data/template bundle, which the dev server
+# `jupyter-book start` serves from a single shell URL).
+#
+# --check-links validates every internal link (0-Index.ipynb -> notebooks) while building.
+#
+# ⚠ This host (seriema, Docker 19.03): the default seccomp profile blocks the syscalls
+# glibc needs to spawn threads, so `docker build` dies with "can't start new thread" and
+# apt/dpkg fails. Use the wrapper, which builds via `docker run --security-opt
+# seccomp=unconfined` + `docker commit`:
+#
+#   ./docker/build-book-image.sh            # -> ams-book:latest, then run it
+#
+# See JUPYTERHUB.md for the same workaround applied to the other images.
+
+FROM python:3.11-slim AS builder
+
+ENV PIP_DISABLE_PIP_VERSION_CHECK=1 \
+    PIP_NO_CACHE_DIR=1 \
+    PYTHONUNBUFFERED=1 \
+    # jupyter-book needs Node.js; this makes its nodeenv bootstrap non-interactive
+    JB_ALLOW_NODEENV=1
+
+# procps: the MyST CLI spawns `ps` when rendering HTML
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends procps \
+    && rm -rf /var/lib/apt/lists/*
+
+# wheels only, so no compiler is needed
+RUN pip install "jupyter-book>=2" nodeenv
+
+WORKDIR /book
+# .dockerignore keeps .git, jupyterhub/, the notebook mirror and the raw data out
+COPY . /book
+
+RUN jupyter-book build --html --check-links
+
+# ---------------------------------------------------------------------------
+
+FROM nginx:alpine
+
+LABEL org.opencontainers.image.title="Advances in MS Data Processing - Jupyter Book" \
+      org.opencontainers.image.source="https://github.com/computational-chemical-biology/AdvancesMSDataProcessing"
+
+COPY docker/book-nginx.conf /etc/nginx/conf.d/default.conf
+COPY --from=builder /book/_build/html /usr/share/nginx/html
+
+EXPOSE 80
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=10s --retries=3 \
+    CMD wget -q -O /dev/null http://127.0.0.1/ || exit 1
+
+CMD ["nginx", "-g", "daemon off;"]

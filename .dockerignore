@@ -1,0 +1,26 @@
+# keep the book image small and the build fast: only book content is needed
+.git
+.github
+.gitignore
+.ipynb_checkpoints
+**/.ipynb_checkpoints
+
+# infrastructure, mirrors and data (also listed in myst.yml -> project.exclude)
+jupyterhub/
+jupyterhub-notebooks/
+docker-compose.yml
+JUPYTERHUB.md
+all_mzML/
+data/
+_build/
+_book/
+myst-staging/
+*.zip
+*.mzML
+*.mzXML
+*.fasta
+*.fastq
+core
+Untitled.ipynb
+untitled.md
+tutorial_resumido_python.ipynb
