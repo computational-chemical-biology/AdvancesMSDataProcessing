@@ -1,54 +1,46 @@
-# Table of contents
-# Learn more at https://jupyterbook.org/customize/toc.html
-
 format: jb-book
 root: 0-Index
 parts:
 - caption: Introduction
   chapters:
-  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Prerequisites
-
-- caption: SpectralDataPreprocessingTreatment
+  - SpectralDataPreprocessingTreatment/PyOpenMS_Prerequisites
+- caption: Pre-processing
   chapters:
-  - file: SpectralDataPreprocessingTreatment/basic_mass_spectrum_preprocessing_peak_detection
-    sections:
-    - file: SpectralDataPreprocessingTreatment/pyopenms_api
-    sections:
-    - file: SpectralDataPreprocessingTreatment/PyOpenMS_Peaks
-    - file: SpectralDataPreprocessingTreatment/python_in_proteomics_peerj_27736v1
-
-- caption: StatisticalValidationModelRobustness
+  - SpectralDataPreprocessingTreatment/basic_mass_spectrum_preprocessing_peak_detection
+  - SpectralDataPreprocessingTreatment/pyopenms-api
+  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Peaks
+    name: PyOpenMS_Task1_Peaks.ipynb
+  - SpectralDataPreprocessingTreatment/python_in_proteomics_peerj_27736v1
+- caption: Statistical robustness
   chapters:
-  - file: StatisticalValidationModelRobustness/QC-MXP_demo
-
-- caption: Cheminformatics AppliedMassSpectrometryStructuralAnalysis
+  - StatisticalValidationModelRobustness/QC-MXP_demo
+- caption: Signal annotation
   chapters:
-  - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/matchms_spectral_library
-  - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/matchms_networking
-  - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/iceberg_demo_pubchem_elucidation
-  - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task2_ID
-
-- caption: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction
+  - CheminformaticsAppliedMassSpectrometryStructuralAnalysis/matchms_spectral_library
+  - CheminformaticsAppliedMassSpectrometryStructuralAnalysis/matchms_networking
+  - CheminformaticsAppliedMassSpectrometryStructuralAnalysis/massql
+  - CheminformaticsAppliedMassSpectrometryStructuralAnalysis/iceberg_demo_pubchem_elucidation
+  - CheminformaticsAppliedMassSpectrometryStructuralAnalysis/PyOpenMS_ID
+- caption: Exploratory data analysis
   chapters:
-  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python
-  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_01_intro
-  - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_02_multivariate
-
-- caption: PredictiveModelingBioactivityChemicalProperties
+  - MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python
+  - MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python_part1
+  - MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python_part2
+  - MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python_part3
+  - MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_01_intro
+  - MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_02_multivariate
+- caption: Compound activity prediction
   chapters:
-  - file: PredictiveModelingBioactivityChemicalProperties/FERMO_core_case_study
-  - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023
-  - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023_exercises
-
-- caption: DataIntegrationMassSpectrometry
+  - PredictiveModelingBioactivityChemicalProperties/FERMO_core_case_study
+  - PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023
+  - PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023_exercises
+- caption: Data Integration
   chapters:
-  - file: DataIntegrationMassSpectrometry/multiomics
-
-- caption: EmergingComputationalPlatformsPipelines
+  - DataIntegrationMassSpectrometry/multiomics
+- caption: Emerging applications
   chapters:
-  - file: SupervisedUnsupervisedMachineLearning/dreams_beer_profiler_workshop
-  - file: EmergingComputationalPlatformsPipelines/AlphaPept
-    sections:
-    - file: EmergingComputationalPlatformsPipelines/Modeling_Protein_Ligand_Interactions
-  - file: EmergingComputationalPlatformsPipelines/ToolUniverse_CaseStudy
-  - file: EmergingComputationalPlatformsPipelines/googleADK
+  - SupervisedUnsupervisedMachineLearning/dreams_beer_profiler_workshop
+  - EmergingComputationalPlatformsPipelines/AlphaPept
+  - EmergingComputationalPlatformsPipelines/Modeling_Protein_Ligand_Interactions
+  - EmergingComputationalPlatformsPipelines/ToolUniverse_CaseStudy
+  - EmergingComputationalPlatformsPipelines/googleADK

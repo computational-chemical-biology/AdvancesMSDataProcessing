@@ -1,0 +1,38 @@
+# Slim single-user JupyterLab image (no PyTorch/TensorFlow) used by default for
+# every JupyterHub user. The heavy modules (chemprop, AlphaPept, ms2deepscore,
+# fermo-core, ...) live in the full `ams-data-processing` image instead.
+#
+# Build on a normal host:  docker build -f Dockerfile.slim -t ams-data-slim:latest .
+# The lockfile is generated from requirements-slim.txt with:
+#   uv pip compile --python-version 3.11 -o requirements-slim-lock.txt requirements-slim.txt
+
+FROM python:3.11-slim
+
+ENV DEBIAN_FRONTEND=noninteractive \
+    JUPYTER_ENABLE_LAB=yes \
+    MLFLOW_SKIP_IP_CHECK=1
+
+# Disable docker-clean hooks: their Post-Invoke `rm` fails under older Docker/overlay2
+RUN rm -f /etc/apt/apt.conf.d/docker-clean
+
+# Build tools, fonts, and X11 libs (needed by RDKit's 2D drawing)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        build-essential \
+        curl \
+        fonts-dejavu \
+        libxrender1 \
+        libxext6 \
+        libx11-6 \
+        libxt6 \
+        libgl1 \
+        libglib2.0-0 \
+    && rm -rf /var/lib/apt/lists/*
+
+WORKDIR /work
+
+COPY requirements-slim-lock.txt /tmp/requirements-slim-lock.txt
+RUN pip install --no-cache-dir -r /tmp/requirements-slim-lock.txt
+
+EXPOSE 8888
+
+CMD ["jupyter", "lab", "--ip=0.0.0.0", "--port=8888", "--no-browser", "--allow-root", "--ServerApp.root_dir=/work"]

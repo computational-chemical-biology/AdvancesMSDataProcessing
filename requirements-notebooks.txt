@@ -1,0 +1,32 @@
+# Extra packages so every notebook in the Jupyter Book imports out of the box
+# in the slim image kernel. Installed on top of requirements-slim-lock.txt.
+# chemprop pinned to the same version as the full stack image.
+# NOTE: fermo-core is intentionally NOT here. It requires matchms==0.24.0,
+# which needs numba<0.58 and numpy<1.25 -- incompatible with the modern slim
+# stack (numpy 1.26/scipy 1.17/sklearn 1.9). The FERMO notebook therefore runs
+# in the full-stack image, whose environment was locked to that older set.
+# numpy MUST stay at 1.x: the lock-built scipy/sklearn/etc. binaries are ABI
+# incompatible with numpy 2.x (umap->numba would otherwise drag numpy to 2.x
+# and break imports with "PyCapsule_Import could not import module datetime").
+numpy==1.26.4
+# Notebook extras (no fermo-core, see note above)
+chemprop==1.6.1
+google-adk
+anthropic
+huggingface_hub
+molplotly
+umap-learn
+scikit-posthocs
+pingouin
+kaleido
+PyComplexHeatmap
+yellowbrick
+snfpy
+mofapy2
+mofax
+statsmodels
+networkx
+seaborn
+Pillow
+coloredlogs
+session-info

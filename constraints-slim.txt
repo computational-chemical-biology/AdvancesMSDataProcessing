@@ -1,0 +1,12 @@
+# Hold the numpy-1-era core at their lock versions so the compiled
+# scipy/sklearn/numba/matplotlib wheels keep working. Extras (umap,
+# molplotly, scikit-posthocs, ...) are resolved around these pins — never
+# let pip float numpy (umap->numba pulls numpy 2.x, which breaks ABI imports
+# with "PyCapsule_Import could not import module datetime").
+numpy==1.26.4
+numba==0.60.0
+scipy==1.17.1
+scikit-learn==1.9.1
+matplotlib==3.11.2
+pandas==2.3.3
+plotly==7.1.0
