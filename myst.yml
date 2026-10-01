@@ -1,53 +1,97 @@
 version: 1
-
 project:
   title: Advanced Mass Spectrometry Data Processing
-  description: >
-    Interactive notebooks for the Advances in MS Data Processing track of the
-    5th IberoAmerican School on Advanced Mass Spectrometry (BrMASS).
+  description: Interactive notebooks for the Advances in MS Data Processing track of the 5th IberoAmerican
+    School on Advanced Mass Spectrometry (BrMASS).
   github: https://github.com/computational-chemical-biology/AdvancesMSDataProcessing
   license: CC-BY-4.0
+  exclude:
+  - jupyterhub/**
+  - jupyterhub-notebooks/**
+  - _book/**
+  - _build/**
+  - .github/**
+  - data/**
+  - all_mzML/**
+  - '**/*.zip'
+  - '**/*.mzML'
+  - '**/*.mzXML'
+  - '**/*.fasta'
+  - '**/*.fastq'
+  - Untitled.ipynb
+  - untitled.md
+  - tutorial_resumido_python.ipynb
+  - core
   toc:
-    - file: 0-Index.ipynb
-    - title: Introduction
-      children:
-        - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task0_Prerequisites.ipynb
-    - title: SpectralDataPreprocessingTreatment
-      children:
-        - title: Metabolomics trail
-          children:
-            - file: SpectralDataPreprocessingTreatment/basic_mass_spectrum_preprocessing_peak_detection.ipynb
-            - file: SpectralDataPreprocessingTreatment/pyopenms_api.ipynb
-        - title: Proteomics trail
-          children:
-            - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task1_Peaks.ipynb
-            - file: SpectralDataPreprocessingTreatment/python_in_proteomics_peerj_27736v1.ipynb
-    - title: StatisticalValidationModelRobustness
-      children:
-        - file: StatisticalValidationModelRobustness/QC-MXP_demo.ipynb
-    - title: Cheminformatics AppliedMassSpectrometryStructuralAnalysis
-      children:
-        - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/iceberg_demo_pubchem_elucidation.ipynb
-        - file: SpectralDataPreprocessingTreatment/PyOpenMS_Task2_ID.ipynb
-    - title: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction
-      children:
-        - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python.ipynb
-        - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_01_intro.ipynb
-        - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_02_multivariate.ipynb
-    - title: PredictiveModelingBioactivityChemicalProperties
-      children:
-        - file: PredictiveModelingBioactivityChemicalProperties/FERMO_core_case_study.ipynb
-        - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023.ipynb
-        - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023_exercises.ipynb
-    - title: DataIntegrationMassSpectrometry
-      children:
-        - file: DataIntegrationMassSpectrometry/multiomics.ipynb
-    - title: EmergingComputationalPlatformsPipelines
-      children:
-        - file: SupervisedUnsupervisedMachineLearning/dreams_beer_profiler_workshop.ipynb
-        - file: EmergingComputationalPlatformsPipelines/AlphaPept.ipynb
-        - file: EmergingComputationalPlatformsPipelines/Modeling_Protein_Ligand_Interactions.ipynb
-
+  - file: 0-Index.ipynb
+  - title: Introduction
+    children:
+    - file: SpectralDataPreprocessingTreatment/PyOpenMS_Prerequisites.ipynb
+      title: PyOpenMS_Prerequisites
+  - title: Pre-processing
+    children:
+    - file: SpectralDataPreprocessingTreatment/basic_mass_spectrum_preprocessing_peak_detection.ipynb
+      title: basic_mass_spectrum_preprocessing_peak_detection
+    - file: SpectralDataPreprocessingTreatment/pyopenms-api.ipynb
+      title: pyopenms-api
+    - file: SpectralDataPreprocessingTreatment/PyOpenMS_Peaks.ipynb
+      title: PyOpenMS_Task1_Peaks
+    - file: SpectralDataPreprocessingTreatment/python_in_proteomics_peerj_27736v1.ipynb
+      title: python_in_proteomics_peerj_27736v1
+  - title: Statistical robustness
+    children:
+    - file: StatisticalValidationModelRobustness/QC-MXP_demo.ipynb
+      title: QC-MXP_demo
+  - title: Signal annotation
+    children:
+    - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/matchms_spectral_library.ipynb
+      title: matchms_spectral_library
+    - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/matchms_networking.ipynb
+      title: matchms_networking
+    - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/massql.ipynb
+      title: massql
+    - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/iceberg_demo_pubchem_elucidation.ipynb
+      title: iceberg_demo_pubchem_elucidation
+    - file: CheminformaticsAppliedMassSpectrometryStructuralAnalysis/PyOpenMS_ID.ipynb
+      title: PyOpenMS_ID
+  - title: Exploratory data analysis
+    children:
+    - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python.ipynb
+      title: Stats_Untargeted_Metabolomics_python
+    - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python_part1.ipynb
+      title: Stats_Untargeted_Metabolomics_python_part1
+    - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python_part2.ipynb
+      title: Stats_Untargeted_Metabolomics_python_part2
+    - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/Stats_Untargeted_Metabolomics_python_part3.ipynb
+      title: Stats_Untargeted_Metabolomics_python_part3
+    - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_01_intro.ipynb
+      title: t_metabol_01_intro
+    - file: MultivariateExploratoryAnalysisSupervisedModelsClassificationPrediction/t_metabol_02_multivariate.ipynb
+      title: t_metabol_02_multivariate
+  - title: Compound activity prediction
+    children:
+    - file: PredictiveModelingBioactivityChemicalProperties/FERMO_core_case_study.ipynb
+      title: FERMO_core_case_study
+    - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023.ipynb
+      title: chemprop_colab_demo_acs_fall2023
+    - file: PredictiveModelingBioactivityChemicalProperties/chemprop_colab_demo_acs_fall2023_exercises.ipynb
+      title: chemprop_colab_demo_acs_fall2023_exercises
+  - title: Data Integration
+    children:
+    - file: DataIntegrationMassSpectrometry/multiomics.ipynb
+      title: multiomics
+  - title: Emerging applications
+    children:
+    - file: SupervisedUnsupervisedMachineLearning/dreams_beer_profiler_workshop.ipynb
+      title: dreams_beer_profiler_workshop
+    - file: EmergingComputationalPlatformsPipelines/AlphaPept.ipynb
+      title: AlphaPept
+    - file: EmergingComputationalPlatformsPipelines/Modeling_Protein_Ligand_Interactions.ipynb
+      title: Modeling_Protein_Ligand_Interactions
+    - file: EmergingComputationalPlatformsPipelines/ToolUniverse_CaseStudy.ipynb
+      title: ToolUniverse_CaseStudy
+    - file: EmergingComputationalPlatformsPipelines/googleADK.ipynb
+      title: googleADK
 site:
   template: book-theme
   options:
