@@ -4,6 +4,9 @@
 #   docker build -f Dockerfile.book -t ams-book .
 #   docker run -d --name ams-book -p 3001:80 ams-book      # http://<host>:3001
 #
+# On seriema this is also a compose service ("docker-compose up -d book"), published at
+# http://seriema.fcfrp.usp.br:3001/ -- plain HTTP: the site has no TLS certificate.
+#
 # `jupyter-book build --html` writes one directory per page (with index.html) into
 # _build/html/, so every page is reachable by its own URL, e.g.
 #   http://<host>:3001/pyopenms-prerequisites

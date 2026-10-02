@@ -73,7 +73,7 @@ by the book sidebar. Every notebook has an **Open in Colab** link; the *Source* 
 repeats the original URL recorded in `notebooks2.0.txt`. The book landing page and
 every section page repeat this same table.
 
-[Online book](http://localhost:3001/) | [Repository](https://github.com/computational-chemical-biology/AdvancesMSDataProcessing) | [JupyterHub](https://seriema.fcfrp.usp.br/hub/)
+[Online book](http://seriema.fcfrp.usp.br:3001/) | [Repository](https://github.com/computational-chemical-biology/AdvancesMSDataProcessing) | [JupyterHub](https://seriema.fcfrp.usp.br/hub/)
 
 ### Introduction
 
@@ -244,11 +244,26 @@ ghp-import -n -p -f _build/html
 
 ## Serve the book over the web (Docker)
 
+The book is published at **<http://seriema.fcfrp.usp.br:3001/>**.
+
+> ⚠️ **That URL is plain `http://`, not `https://`** — there is no TLS certificate for
+> port 3001. This site has no HTTPS hostname: only port 443 is TLS-terminated, by the
+> shared nginx-proxy that fronts the JupyterHub, and MyST v2 hardcodes root-relative
+> asset URLs (`/build/...`), so the book cannot be moved under that proxy's `/book/`
+> path without patching the build output. Use `http://<host>:3001/`.
+
 `Dockerfile.book` builds the book and serves it with nginx:
 
 ```bash
 docker build -f Dockerfile.book -t ams-book .
 docker run -d --name ams-book -p 3001:80 ams-book      # http://<host>:3001
+```
+
+It is also defined as a `book` service in `docker-compose.yml`, so on this host it is
+started and kept running (across reboots) with:
+
+```bash
+docker-compose up -d book
 ```
 
 Then check the landing page, the sidebar and every notebook URL at once:
@@ -269,7 +284,7 @@ link. Run it without a URL for source-level checks only.
 >
 > ```bash
 > ./docker/build-book-image.sh 3001
-> docker run -d --name ams-book -p 3001:80 ams-book:latest
+> docker-compose up -d book          # image ams-book:latest on port 3001
 > ```
 
 ## Regenerating the index and sidebar

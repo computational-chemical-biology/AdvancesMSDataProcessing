@@ -70,6 +70,12 @@ Start it:
   docker rm -f ams-book 2>/dev/null || true
   docker run -d --name ams-book -p ${PORT}:80 ams-book:latest
 
+  # or, on this host, let compose manage it (restart: unless-stopped, port 3001):
+  docker rm -f ams-book 2>/dev/null || true
+  docker-compose up -d book
+
 Verify the landing page, the sidebar and every notebook URL:
   python3 jupyterhub/check_book_indexes.py http://localhost:${PORT}
+
+Public URL on this host: http://seriema.fcfrp.usp.br:${PORT}/  (plain HTTP: no certificate)
 EOF

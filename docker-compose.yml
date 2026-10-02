@@ -53,6 +53,18 @@ services:
       - jupyterhub-net
       - nginx-net
 
+  # Static Jupyter Book (the course index + notebooks), served by nginx.
+  # Public URL: http://seriema.fcfrp.usp.br:3001/
+  # Build the image first with ./docker/build-book-image.sh 3001
+  # (plain HTTP on purpose: this site has no TLS certificate; only 443 is
+  # TLS-terminated, by the shared nginx-proxy that fronts the Hub).
+  book:
+    image: ams-book:latest
+    container_name: ams-book
+    restart: unless-stopped
+    ports:
+      - "3001:80"
+
 volumes:
   jupyterhub_data:
 
