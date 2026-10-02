@@ -4,4 +4,6 @@
 
 Back to the [complete course index](../).
 
-- [QC-MXP_demo](../qc-mxp-demo/)
+| Notebook | Open in Colab | Source |
+| --- | --- | --- |
+| [QC-MXP_demo.ipynb](../qc-mxp-demo/) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/computational-chemical-biology/AdvancesMSDataProcessing/blob/master/StatisticalValidationModelRobustness/QC-MXP_demo.ipynb) | https://broadhurstdavid.github.io/QC-MXP/ |

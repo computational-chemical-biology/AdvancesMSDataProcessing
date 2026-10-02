@@ -4,4 +4,6 @@
 
 Back to the [complete course index](../).
 
-- [PyOpenMS_Prerequisites](../pyopenms-prerequisites/)
+| Notebook | Open in Colab | Source |
+| --- | --- | --- |
+| [PyOpenMS_Prerequisites.ipynb](../pyopenms-prerequisites/) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/computational-chemical-biology/AdvancesMSDataProcessing/blob/master/SpectralDataPreprocessingTreatment/PyOpenMS_Prerequisites.ipynb) | https://github.com/timosachsenberg/PyOpenMSCourse |

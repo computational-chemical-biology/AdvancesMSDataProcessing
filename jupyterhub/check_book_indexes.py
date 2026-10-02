@@ -90,6 +90,16 @@ def parse_txt():
     return sections
 
 
+def colab_map(text):
+    """{notebook name -> Colab URL} for every row of an index table."""
+    out = {}
+    for name, colab in re.findall(
+            r"\|\s*\[([^\]]+)\]\([^)]*\)\s*\|\s*\[!\[Open In Colab\]\([^)]+\)\]\((https://[^)]+)\)",
+            text):
+        out[name] = colab
+    return out
+
+
 def get(url, timeout=20):
     with urllib.request.urlopen(url, timeout=timeout) as resp:
         return resp.status, resp.read().decode("utf-8", "replace")
@@ -169,10 +179,17 @@ def main():
         notes.append("%s is shipped although the txt only names it as an annotation" % x)
 
     print("\n[3] 0-Index.ipynb landing page")
-    links = re.findall(r"- \[([^\]]+)\]\(\./([^)]+)\)", md)
-    check(len(links) == len(expected), "index lists %d bullets (expected %d)" % (len(links), len(expected)))
-    broken = [t for _, t in links if not os.path.exists(t)]
-    check(not broken, "all index links resolve" + ("" if not broken else " - broken: %s" % broken))
+    # the index table links each notebook to its book page (`<slug>/`), so resolve the
+    # slug against the sidebar instead of the file system
+    rows = re.findall(r"^\|\s*\[([^\]]+)\]\(([^)]+)\)\s*\|", md, re.M)
+    check(len(rows) == len(expected), "index lists %d notebooks (expected %d)"
+          % (len(rows), len(expected)))
+    broken = [t for _t, slug in rows
+              if slug.rstrip("/") and slug.rstrip("/") not in
+              {myst_slug(os.path.splitext(os.path.basename(f))[0])
+               for _s, c in myst_secs for _t, f in c}]
+    check(not broken, "every index link names a book page"
+          + ("" if not broken else " - broken: %s" % broken[:5]))
     for s in txt_sections:
         if ("## " + s["name"]) not in md:
             failures.append("index page is missing section %r" % s["name"])
@@ -218,7 +235,9 @@ def main():
         text = open(path, encoding="utf-8").read()
         h1 = re.search(r"^#\s+(.+)$", text, re.M)
         check(bool(h1) and h1.group(1).strip() == sec, "%s H1 is %r" % (rel, sec))
-        listed = re.findall(r"^-\s+\[([^\]]+)\]\(\.\./([^/]+)/\)$", text, re.M)
+        # the Notebook column links ../<slug>/ for every notebook of the section
+        listed = [(os.path.splitext(n)[0], slug)
+                  for n, slug in re.findall(r"^\|\s*\[([^\]]+)\]\(\.\./([^/]+)/\)\s*\|", text, re.M)]
         want = [(t, myst_slug(os.path.splitext(os.path.basename(f))[0])) for t, f in kids]
         check(listed == want,
               "%s lists its %d notebook%s with the theme slugs"
@@ -228,8 +247,34 @@ def main():
                    if f.endswith(".md") and f not in want_files)
     check(not stray, "no stale section pages" + ("" if not stray else " - %s" % stray))
 
+    print("\n[6] the book index matches the README table (Colab links)")
+    readme_map = colab_map(readme)
+    index_map = colab_map(md)
+    check(len(index_map) == len(expected),
+          "0-Index.ipynb lists all %d notebooks with a Colab link" % len(expected)
+          + ("" if len(index_map) == len(expected) else " - got %d" % len(index_map)))
+    check(index_map == readme_map,
+          "0-Index.ipynb Colab links are the README ones"
+          + ("" if index_map == readme_map else " - differs: %s" % sorted(
+              set(index_map.items()) ^ set(readme_map.items()))[:3]))
+    # the tables key on the file name, myst.yml on the title without extension
+    readme_by_title = {os.path.splitext(n)[0]: c for n, c in readme_map.items()}
+    page_drift = []
+    for i, (sec, kids) in enumerate(myst_secs):
+        p = os.path.join(ROOT, section_file(i, sec))
+        if not os.path.exists(p):
+            continue
+        got = {os.path.splitext(n)[0]: c
+               for n, c in colab_map(open(p, encoding="utf-8").read()).items()}
+        want = {t: readme_by_title[t] for t, _f in kids if t in readme_by_title}
+        if got != want or len(want) != len(kids):
+            page_drift.append(sec)
+    check(not page_drift,
+          "the %d section pages repeat the README rows for their notebooks" % len(myst_secs)
+          + ("" if not page_drift else " - differ: %s" % page_drift[:3]))
+
     if base:
-        print("\n[6] served site: %s" % base)
+        print("\n[7] served site: %s" % base)
         try:
             status, html = get(base + "/")
             check(status == 200, "GET / -> %s" % status)
@@ -238,7 +283,7 @@ def main():
             check(False, "GET / failed: %s" % exc)
             html = ""
 
-        print("\n[7] served sidebar (config.json) vs notebooks2.0.txt")
+        print("\n[8] served sidebar (config.json) vs notebooks2.0.txt")
         try:
             status, cfg_raw = get(base + "/config.json")
             cfg = json.loads(cfg_raw) if status == 200 else {}
@@ -280,7 +325,7 @@ def main():
             check(not drift, "notebook slugs are the file names"
                   + ("" if not drift else " - %s" % drift[:3]))
 
-            print("\n[8] served site: one URL per notebook")
+            print("\n[9] served site: one URL per notebook")
             bad = []
             for title, _f in [(t, f) for _, c in myst_secs for t, f in c]:
                 slug = slugs.get(title)
@@ -300,17 +345,17 @@ def main():
                   % sum(len(c) for _, c in myst_secs)
                   + ("" if not bad else " - failing: %s" % bad[:5]))
 
-            print("\n[9] served landing page: section headings + notebook links")
+            print("\n[10] served landing page: section headings + notebook links")
             if html:
                 missing_h = [s for s, _ in myst_secs if s not in re.sub(r"<[^>]+>", " ", html)]
                 check(not missing_h, "every section name is rendered on the landing page"
                       + ("" if not missing_h else " - absent: %s" % missing_h))
-                hrefs = set(re.findall(r'href="(/[^"#?]*)"', html))
-                missing_l = sorted(t for t, s in slugs.items() if s and "/" + s not in hrefs)
+                hrefs = {h.strip("/") for h in re.findall(r'href="(/[^"#?]*)"', html)}
+                missing_l = sorted(t for t, s in slugs.items() if s and s not in hrefs)
                 check(not missing_l, "landing page links to every notebook"
                       + ("" if not missing_l else " - absent: %s" % missing_l[:5]))
 
-            print("\n[10] served section pages: headings are clickable")
+            print("\n[11] served section pages: headings are clickable")
             # a group entry that is only a heading has no slug; with sections/*.md every
             # section is a page, so each one has a slug and a URL of its own
             by_slug = {p.get("slug"): p for p in pages if p.get("slug")}
@@ -348,6 +393,8 @@ def main():
                 if st != 200:
                     continue
                 for url in sorted(set(ast_links(json.loads(raw)))):
+                    if url.startswith(("http://", "https://", "#", "mailto:")):
+                        continue          # Colab and Source columns are external on purpose
                     target = url.strip("./").rstrip("/")
                     if target and target not in known:
                         dangling.append("%s: %s" % (sec, url))

@@ -193,12 +193,13 @@ def section_file(idx, name):
     return "%s/%02d-%s.md" % (SECTION_DIR, idx + 1, myst_slug(name))
 
 
-def section_pages(sections, chapters):
+def section_pages(sections, chapters, hub):
     """Write one MyST page per section: the sidebar group heading becomes a real page.
 
-    Each page repeats the section name as its H1 and lists that section's notebooks,
-    linking to their book pages with the slug the theme generates (`../<slug>/`), so the
-    links hold no matter which path the book is served from.
+    Each page repeats the section name as its H1 and then the same
+    `Notebook | Open in Colab | Source` table the README and the landing page show, with
+    the Notebook column pointing at the book page (`../<slug>/`) so the links hold no
+    matter which path the book is served from.
     """
     folder = os.path.join(ROOT, SECTION_DIR)
     os.makedirs(folder, exist_ok=True)
@@ -214,15 +215,10 @@ def section_pages(sections, chapters):
             "",
             "Back to the [complete course index](../).",
             "",
+            index_tables([s], hub, heading=None, book_prefix="../"),
         ]
-        for entry in entries:
-            title = os.path.splitext(entry["name"])[0]
-            # the theme slugs a notebook after its file name, not after the title we show
-            # (PyOpenMS_Task1_Peaks is served as /pyopenms-peaks), so link to the file
-            page = os.path.splitext(os.path.basename(entry["real"]))[0]
-            lines.append("- [%s](../%s/)" % (title, myst_slug(page)))
         with open(os.path.join(ROOT, rel), "w", encoding="utf-8") as fh:
-            fh.write("\n".join(lines) + "\n")
+            fh.write("\n".join(lines))
         written.append(rel)
     # drop pages left behind by an older section list
     keep = {os.path.basename(p) for p in written}
@@ -256,39 +252,62 @@ def colab_url(path):
     return COLAB_URL.format(slug=REPO_SLUG, branch=BRANCH, path=path.replace(os.sep, "/"))
 
 
+COLAB_BADGE = "https://colab.research.google.com/assets/colab-badge.svg"
+
+
+def index_tables(sections, hub, heading="###", book_prefix=None):
+    """The notebook index: one `Notebook | Open in Colab | Source` table per section.
+
+    Shared by the README block, the 0-Index.ipynb landing page and the sections/*.md
+    pages, so the three indexes always show the same rows with the same Colab links.
+    `book_prefix` None -> the Notebook column links to the repo path (README on GitHub);
+    a string -> it links to the book page (`../<slug>/` from a section page, `<slug>/`
+    from the landing page), where the theme's slug comes from the file name.
+    `heading` None -> no section heading, for a page whose H1 already is the section.
+    """
+    blocks = []
+    for s in sections:
+        rows = (["%s %s" % (heading, s["name"]), ""] if heading else [])
+        rows += ["| Notebook | Open in Colab | Source |",
+                 "| --- | --- | --- |"]
+        for rel, name, note in hub[s["name"]]:
+            if book_prefix is None:
+                target = rel
+            else:
+                page = os.path.splitext(os.path.basename(rel))[0]
+                target = "%s%s/" % (book_prefix, myst_slug(page))
+            # only real URLs belong in the Source column; notebooks2.0.txt also uses the
+            # annotation field for internal notes (e.g. "part of the combined notebook")
+            source = note if note.startswith(("http://", "https://")) else "—"
+            rows.append("| [%s](%s) | [![Open In Colab](%s)](%s) | %s |"
+                        % (name, target, COLAB_BADGE, colab_url(rel), source))
+        blocks.append("\n".join(rows) + "\n")
+    return "\n".join(blocks)
+
+
 def readme_index(sections, hub):
     """Markdown notebook index for the README: one table per section, Colab link each.
 
     Generated from notebooks2.0.txt, so the list cannot drift from the book or the hub.
     """
-    lines = [
+    total = sum(len(v) for v in hub.values())
+    return "\n".join([
         README_BEGIN,
         "",
         "## Notebook index",
         "",
         "%d notebooks in %d sections, exactly as listed in `notebooks2.0.txt` and as served"
-        % (sum(len(v) for v in hub.values()), len(sections)),
+        % (total, len(sections)),
         "by the book sidebar. Every notebook has an **Open in Colab** link; the *Source* column",
-        "repeats the original URL recorded in `notebooks2.0.txt`.",
+        "repeats the original URL recorded in `notebooks2.0.txt`. The book landing page and",
+        "every section page repeat this same table.",
         "",
         "[Online book](http://localhost:3001/) | "
         "[Repository](%s) | [JupyterHub](https://seriema.fcfrp.usp.br/hub/)" % REPO_URL,
         "",
-    ]
-    for s in sections:
-        lines += ["### %s" % s["name"], "",
-                  "| Notebook | Open in Colab | Source |",
-                  "| --- | --- | --- |"]
-        for rel, name, note in hub[s["name"]]:
-            colab = colab_url(rel)
-            # only real URLs belong in the Source column; notebooks2.0.txt also uses the
-            # annotation field for internal notes (e.g. "part of the combined notebook")
-            source = note if note.startswith(("http://", "https://")) else "—"
-            lines.append("| [%s](%s) | [![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](%s) | %s |"
-                         % (name, rel, colab, source))
-        lines.append("")
-    lines.append(README_END)
-    return "\n".join(lines) + "\n"
+        index_tables(sections, hub),
+        README_END,
+    ]) + "\n"
 
 
 def update_readme(block):
@@ -312,7 +331,7 @@ def update_readme(block):
 def main():
     sections = parse()
     chapters, hub = build_chapters(sections)
-    pages = section_pages(sections, chapters)
+    pages = section_pages(sections, chapters, hub)
 
     toc = {"format": "jb-book", "root": "0-Index", "parts": [
         {"caption": s["name"], "chapters": [toc_file(e) for e in chapters[s["name"]]]}
@@ -349,19 +368,13 @@ def main():
         "[5th IberoAmerican School on Advanced Mass Spectrometry](https://5iberoamerican.brmass.com/)",
         "(Rio de Janeiro, September 28 - October 2, 2026).",
         "",
-        "This online book collects the hands-on notebooks used during the course. The material is",
-        "organized following the course program:",
+        "This online book collects the hands-on notebooks used during the course, organized",
+        "following the course program. Every notebook opens in this book and runs in Colab;",
+        "the *Source* column repeats the original URL recorded in `notebooks2.0.txt`.",
         "",
+        index_tables(sections, hub, heading="##", book_prefix=""),
     ]
-    for s in sections:
-        md.append(f"## {s['name']}")
-        md.append("")
-        for rel, name, note in hub[s["name"]]:
-            cell_line = f"- [{name}](./{rel})"
-            if note and note.startswith(("http://", "https://")):
-                cell_line += f"  — {note}"
-            md.append(cell_line)
-        md.append("")
+    md = [l for line in md for l in line.split("\n")]
 
     nb = {
         "cells": [

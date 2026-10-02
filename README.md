@@ -70,7 +70,8 @@ EmergingComputationalPlatformsPipelines/  # AlphaPept, protein–ligand modellin
 
 26 notebooks in 8 sections, exactly as listed in `notebooks2.0.txt` and as served
 by the book sidebar. Every notebook has an **Open in Colab** link; the *Source* column
-repeats the original URL recorded in `notebooks2.0.txt`.
+repeats the original URL recorded in `notebooks2.0.txt`. The book landing page and
+every section page repeat this same table.
 
 [Online book](http://localhost:3001/) | [Repository](https://github.com/computational-chemical-biology/AdvancesMSDataProcessing) | [JupyterHub](https://seriema.fcfrp.usp.br/hub/)
 
